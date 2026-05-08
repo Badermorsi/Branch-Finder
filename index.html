@@ -43,11 +43,10 @@ select {
 /* ADD THIS HERE */
 .logo-banner{
   width:100%;
-  height:320px;
+  height:220px;
   background:url('logo.png') center center no-repeat;
-  background-size:cover;
-  margin-bottom:20px;
-  border-radius:10px 10px 0 0;
+  background-size:contain;
+  margin-bottom:10px;
 }
 
 </style>
@@ -59,7 +58,6 @@ select {
 
 <div class="logo-banner"></div>
 
-<h2>Delivery Branch Finder</h2>
 
 <select id="city" onchange="loadAreas()">
   <option value="">Select City</option>
