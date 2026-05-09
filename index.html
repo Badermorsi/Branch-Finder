@@ -70,8 +70,8 @@ select {
   <option value="">Select City</option>
 </select>
 
-<input type="text" id="areaInput" placeholder="Search Area..." oninput="filterAreas()">
-
+<input type="text" id="areaInput" placeholder="Search Area..." oninput="filterAreas()" style="display:none;">
+  
 <div id="areaList" style="
   border:1px solid #ccc;
   max-height:200px;
@@ -344,6 +344,15 @@ cities.forEach(c => {
 
 // ================= LOAD AREAS =================
 function loadAreas() {
+  const city = document.getElementById("city").value;
+  const areaInput = document.getElementById("areaInput");
+
+  if(city === ""){
+      areaInput.style.display = "none";
+  } else {
+      areaInput.style.display = "block";
+  }
+  
   areaInput.value = "";
   areaList.innerHTML = "";
   result.innerHTML = "Delivery Branch will appear here";
