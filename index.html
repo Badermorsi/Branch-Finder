@@ -357,12 +357,13 @@ const data = [
 { city:"All Areas (including Remote area)", area:"Central District", branch:"Sama" },
 { city:"All Areas (including Remote area)", area:"Dhaher (Daher)", branch:"Noud" },
 { city:"All Areas (including Remote area)", area:"Falaj Hazaa", branch:"Falaj 2" },
+{ city:"All Areas (including Remote area)", area:"Sharjah", branch:"Jeebly (Remote area - Delivery on Monday)" },
 
 ];
 
 // ================= INIT =================
 const citySelect = document.getElementById("city");
-const areaInput = document.getElementById("areaInput");
+const areaInput = document.getElementById("areaInput");a
 const areaList = document.getElementById("areaList");
 const result = document.getElementById("result");
 
@@ -430,12 +431,10 @@ function filterAreas() {
         d => d.city === city && d.area === area
       );
 
-      result.innerHTML = `
-  City: ${found.city || "N/A"} <br>
-  Delivery Branch: ${found.branch
-    ? found.branch.replace(/(Remote area.*)/i, "<b>$1</b>")
-    : "N/A"}
-`;
+      result.innerHTML = found
+        ? "Delivery Branch: " + found.branch
+        : "Not found";
+    };
 
     areaList.appendChild(div);
 
