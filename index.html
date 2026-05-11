@@ -8,7 +8,7 @@
 
 body {
   font-family: Arial;
-  background: #f4f4f4;
+  background: #f4f4f4;areaInput.addEven
   padding: 20px;
 }
 
@@ -642,6 +642,9 @@ cities.forEach(c => {
   opt.textContent = c;
   citySelect.appendChild(opt);
 });
+
+areaInput.addEventListener("focus", filterAreas);
+areaInput.addEventListener("input", filterAreas);
 
 function loadAreas() {
   const city = citySelect.value;
