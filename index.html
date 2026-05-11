@@ -699,6 +699,16 @@ areaInput.addEventListener("click", () => {
   showAllAreas();         // important for mouse click
 });
 
+document.addEventListener("click", function (e) {
+  const isClickInside =
+    areaInput.contains(e.target) ||
+    areaList.contains(e.target);
+
+  if (!isClickInside) {
+    areaList.innerHTML = "";
+  }
+});
+  
 function loadAreas() {
   const city = citySelect.value;
 
