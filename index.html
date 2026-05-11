@@ -643,6 +643,23 @@ cities.forEach(c => {
   citySelect.appendChild(opt);
 });
 
+function loadAreas() {
+  const city = citySelect.value;
+
+  if (city) {
+    areaInput.style.display = "block";
+    areaInput.focus(); // 👈 IMPORTANT: forces UI to appear active
+    areaInput.value = ""; // reset input
+    areaList.innerHTML = ""; // clear old list
+
+    result.innerHTML = "Delivery Branch will appear here";
+  } else {
+    areaInput.style.display = "none";
+    areaList.innerHTML = "";
+    result.innerHTML = "Delivery Branch will appear here";
+  }
+}
+  
 let currentFiltered = [];
 let selectedIndex = -1;
   
