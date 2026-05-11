@@ -363,7 +363,7 @@ const data = [
 
 // ================= INIT =================
 const citySelect = document.getElementById("city");
-const areaInput = document.getElementById("areaInput");a
+const areaInput = document.getElementById("areaInput");
 const areaList = document.getElementById("areaList");
 const result = document.getElementById("result");
 
@@ -375,14 +375,18 @@ cities.forEach(c => {
 
 // ================= LOAD AREAS =================
 function loadAreas() {
-  const city = document.getElementById("city").value;
-  const areaInput = document.getElementById("areaInput");
+  const city = citySelect.value;
 
-  if(city === ""){
-      areaInput.style.display = "none";
+  if (city === "") {
+    areaInput.style.display = "none";
   } else {
-      areaInput.style.display = "block";
+    areaInput.style.display = "block";
   }
+
+  areaInput.value = "";
+  areaList.innerHTML = "";
+  result.innerHTML = "Delivery Branch will appear here";
+}
   
   areaInput.value = "";
   areaList.innerHTML = "";
