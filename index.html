@@ -110,7 +110,6 @@ const data = [
 { city:"Al Ain", area:"Khaldiya (Al-Ain)", branch:"Falaj 2" },
 { city:"Al Ain", area:"Kuwaitat", branch:"Sama" },
 { city:"Al Ain", area:"Manaseer", branch:"Sama" },
-{ city:"Al Ain", area:"Manazef (Masoudi)", branch:"Sama" },
 { city:"Al Ain", area:"Maqam", branch:"Salamat" },
 { city:"Al Ain", area:"Markhaniyya", branch:"Sama" },
 { city:"Al Ain", area:"Manazef", branch:"Sama" },
@@ -370,7 +369,10 @@ const result = document.getElementById("result");
 const cities = [...new Set(data.map(d => d.city))];
 
 cities.forEach(c => {
-  citySelect.innerHTML += `<option value="${c}">${c}</option>`;
+  const opt = document.createElement("option");
+  opt.value = c;
+  opt.textContent = c;
+  citySelect.appendChild(opt);
 });
 
 // ================= LOAD AREAS =================
@@ -383,11 +385,6 @@ function loadAreas() {
     areaInput.style.display = "block";
   }
 
-  areaInput.value = "";
-  areaList.innerHTML = "";
-  result.innerHTML = "Delivery Branch will appear here";
-}
-  
   areaInput.value = "";
   areaList.innerHTML = "";
   result.innerHTML = "Delivery Branch will appear here";
