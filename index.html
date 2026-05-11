@@ -357,7 +357,7 @@ const data = [
 { city:"All Areas (including Remote area)", area:"Central District", branch:"Sama" },
 { city:"All Areas (including Remote area)", area:"Dhaher (Daher)", branch:"Noud" },
 { city:"All Areas (including Remote area)", area:"Falaj Hazaa", branch:"Falaj 2" },
-{ city:"All Areas (including Remote area)", area:"Sharja", branch:"Jeebly -Remote area- {Delivery on Sunday}" },
+{ city:"All Areas (including Remote area)", area:"Sharja", branch:"Jeebly -Remote area- (Delivery on Sunday)" },
 
 ];
 
@@ -386,8 +386,12 @@ function loadAreas() {
   
   areaInput.value = "";
   areaList.innerHTML = "";
-  result.innerHTML = "Delivery Branch will appear here";
-}
+  result.innerHTML =
+  "Delivery Branch: " +
+  found.branch.replace(
+    /(Remote area.*)/i,
+    "<b>$1</b>"
+  );
 
 // ================= SHOW BRANCH =================
 function filterAreas() {
