@@ -8,7 +8,7 @@
 
 body {
   font-family: Arial;
-  background: #f4f4f4;areaInput.addEven
+  background: #f4f4f4;
   padding: 20px;
 }
 
@@ -634,17 +634,70 @@ const areaInput = document.getElementById("areaInput");
 const areaList = document.getElementById("areaList");
 const result = document.getElementById("result");
 
-const cities = [...new Set(data.map(d => d.city))];
+if (typeof data === "undefined") {
+  console.error("DATA is missing");
+} else {
+  const cities = [...new Set(data.map(d => d.city))];
 
-cities.forEach(c => {
-  const opt = document.createElement("option");
-  opt.value = c;
-  opt.textContent = c;
-  citySelect.appendChild(opt);
+  cities.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    citySelect.appendChild(opt);
+  });
+}
+
+function getAreas(city) {
+  return [...new Set(
+    data.filter(d => d.city === city).map(d => d.area)
+  )];
+}
+  
+function showAllAreas() {
+  const city = citySelect.value;
+
+  areaList.innerHTML = "";
+
+  if (!city) {
+    areaList.innerHTML =
+      "<div style='padding:10px;color:red'>Please select a city first</div>";
+    return;
+  }
+
+  const areas = getAreas(city);
+
+  currentFiltered = areas;
+  selectedIndex = -1;
+
+  areas.forEach((area, index) => {
+    const div = document.createElement("div");
+    div.textContent = area;
+
+    div.style.padding = "10px";
+    div.style.cursor = "pointer";
+    div.style.borderBottom = "1px solid #eee";
+
+    div.onclick = () => selectArea(area);
+
+    div.onmouseenter = () => {
+      selectedIndex = index;
+      updateHighlight();
+    };
+
+    areaList.appendChild(div);
+  });
+
+  updateHighlight();
+}
+  
+areaInput.addEventListener("focus", () => {
+  areaInput.value = "";   // optional reset
+  showAllAreas();         // ALWAYS show full list
 });
 
-areaInput.addEventListener("focus", filterAreas);
-areaInput.addEventListener("input", filterAreas);
+areaInput.addEventListener("click", () => {
+  showAllAreas();         // important for mouse click
+});
 
 function loadAreas() {
   const city = citySelect.value;
@@ -723,7 +776,7 @@ function updateHighlight() {
     item.style.background = (i === selectedIndex) ? "#e3f2fd" : "white";
   });
 }
-
+ 
 // ================= SHOW BRANCH =================
 function filterAreas() {
 
@@ -732,14 +785,10 @@ function filterAreas() {
 
   areaList.innerHTML = "";
 
-  if (!city) return;
+if (!city) return;
 
-  const areas = [...new Set(
-    data
-      .filter(d => d.city === city)
-      .map(d => d.area)
-  )];
-
+const areas = getAreas(city);
+  
   currentFiltered = input
     ? areas.filter(a => a.toLowerCase().includes(input))
     : areas;
