@@ -788,7 +788,16 @@ function updateHighlight() {
   const items = areaList.querySelectorAll("div");
 
   items.forEach((item, i) => {
-    item.style.background = (i === selectedIndex) ? "#e3f2fd" : "white";
+
+    item.style.background =
+      (i === selectedIndex) ? "#e3f2fd" : "white";
+
+    // auto scroll selected item into view
+    if (i === selectedIndex) {
+      item.scrollIntoView({
+        block: "nearest"
+      });
+    }
   });
 }
  
