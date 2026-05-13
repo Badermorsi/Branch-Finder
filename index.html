@@ -146,7 +146,7 @@ const data = [
 { city:"Al Ain", area:"Zakher", branch:"Falaj 2" },
 
 /* ================= ABU DHABI ================= */
-{ city:"Abu Dhabi", area:"AbuDhabi Airport", branch:"Al-Zeina (AD)" },
+{ city:"Abu Dhabi", area:"AbuDhabi Airport", branch:"Al-Zeina (AD)", phone: "02-5517772 /	0547257880" },
 { city:"Abu Dhabi", area:"AbuDhabi Industrial City", branch:"Rabdan 2 (AD)" },
 { city:"Abu Dhabi", area:"Al-Danah", branch:"Adnoc (AD)" },
 { city:"Abu Dhabi", area:"Al-Dhannah", branch:"Ruwais 2 (AD)" },
@@ -787,8 +787,12 @@ function selectArea(area) {
   );
 
   result.innerHTML = found
-    ? "Delivery Branch: " + found.branch
-    : "Not found";
+  ? `
+    Delivery Branch: ${found.branch}
+    <br><br>
+    Branch No.: ${found.phone}
+  `
+  : "Not found";
 }
 
 function updateHighlight() {
