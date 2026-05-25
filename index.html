@@ -797,6 +797,7 @@ areaInput.addEventListener("keydown", function(e) {
   
 // ================= LOAD AREAS =================
 function selectArea(area) {
+
   const city = citySelect.value;
 
   areaInput.value = area;
@@ -806,10 +807,27 @@ function selectArea(area) {
     d => d.city === city && d.area === area
   );
 
-  result.innerHTML = found
-    ? "Delivery Branch: " + found.branch
-    : "Not found";
-}
+  if (found) {
+
+    result.innerHTML =
+      "Delivery Branch: " + found.branch;
+
+    const selectedArea = found.area;
+
+    const mapUrl =
+      "https://www.google.com/maps/d/viewer?mid=11m8cDm7JggyoEfq3ZYWcdvnYLf1R1gk&q="
+      + encodeURIComponent(selectedArea);
+
+    window.open(mapUrl, "_blank");
+
+  } else {
+
+    result.innerHTML = "Not found";
+
+  }
+
+} // ← ADD THIS
+
 
 function updateHighlight() {
 
@@ -826,8 +844,12 @@ function updateHighlight() {
         block: "nearest"
       });
     }
+
   });
+
 }
+
+// ================= SHOW BRANCH =================
  
 // ================= SHOW BRANCH =================
 function filterAreas() {
