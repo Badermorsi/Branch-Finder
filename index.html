@@ -742,12 +742,16 @@ function showAllAreas() {
 }
   
 areaInput.addEventListener("focus", () => {
-  areaInput.value = "";   // optional reset
-  showAllAreas();         // ALWAYS show full list
+  // When changing the area, immediately hide the previously selected branch.
+  result.textContent = "Delivery Branch will appear here";
+  areaInput.value = "";
+  showAllAreas(); // ALWAYS show the full list
 });
 
 areaInput.addEventListener("click", () => {
-  showAllAreas();         // important for mouse click
+  // Do not leave the old branch visible while choosing another area.
+  result.textContent = "Delivery Branch will appear here";
+  showAllAreas();
 });
 
 document.addEventListener("click", function (e) {
@@ -853,6 +857,8 @@ function filterAreas() {
   const city = citySelect.value;
   const input = areaInput.value.trim().toLowerCase();
 
+  // While typing or clearing the area search, no previous branch is valid.
+  result.textContent = "Delivery Branch will appear here";
   areaList.innerHTML = "";
 
 if (!city) return;
